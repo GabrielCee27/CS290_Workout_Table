@@ -1,0 +1,57 @@
+<form method="post">
+	<legend> <h2> New Exercise </h2> </legend>
+	<label>Name: </label> 
+		<input type='text' name='name' id='name' size='20'>
+	<label>  Reps: </label>
+		<input type='text' name='reps' id='reps' size='2'>
+	<label>  Weight: </label>
+		<input type='text' name='weight' id='weight' size='3'>
+	<label>  Unit(1=lbs / 0=kgs): </label>
+		<input type='text' name='unit' id='unti' size='1'>
+	<label>  Date(yyy-mm-dd): </label>
+		<input type='text' name='date' id='date' size='12'>
+	<input type='submit' name='add workout' value='add workout'>
+</form>
+
+
+<br>
+
+<div id='table_data'>
+	{{#if results}}
+		<table> <label> <h2> Previous Workouts </h2> </label>
+			<thead> 
+				<th> Name </th>
+				<th> Reps </th>
+				<th> Weight </th>
+				<th> Unit </th>
+				<th> Date </th>
+			</thead> 
+			<tbody>
+				{{#each results}}
+					<tr> 
+						<td> {{this.name}} </td>
+						<td> {{this.reps}} </td>
+						<td> {{this.weight}} </td>
+						
+						{{#if this.unit}}
+							<td> lbs </td>
+						{{else}}
+							<td> kgs </td>
+						{{/if}}
+						
+						<td> {{this.date}} </td>
+						<td> <form method='post'>
+							<input type='hidden' name='id' value='{{this.id}}'>
+							<input type='submit' name='edit' value='edit'>
+						</td> </form>
+						<td> <form method='post'>
+							<input type='hidden' name='id' value='{{this.id}}'>
+							<input type='submit' name='delete' value='delete'>
+						</td> </form>
+					</tr>
+				{{/each}}
+			</tbody>	
+		</table>
+	{{/if}}
+
+</div>
